@@ -1,12 +1,12 @@
 // helper.js
 
 const request = require("request-promise");
-const spotifyAccessToken = "BQCbtKM52GoC8L79qCf7rnSfyuIEEL_Jr9uxLZyvt999uuWGgHclv9FJW6CPHJ43BM-3RVJ8NF-TXfO7id3wzZb1HlfIfC0g_l_EEwfXIwkNsbkWFEiMLYTB-e4guBQKCQBV9_IpixOJs1Buq6KIvwBcEYQMW2x_rAM";
+const spotifyAccessToken = "BQCURvYXoVl0_lMfOyHH_TtLOFnIZ-OSmHi6z0uzTTfzvBtCpdKlmiBD1uT5L9_4babbcoB8n-8iuPt9ZtZ03FU_YdH4_w44TOPIiofJmB3BVv2dOU8umgiiZ-3WKeP7LaRLZ0UMUlilo9o0AsAxoCDYNt0uaU3BTqk";
 const headers = { Authorization: `Bearer ${spotifyAccessToken}` };
 
 const fetchArtistSpotify = (artistName) => {
   const options = {
-    url: `https://api.spotify.com/v1/search?q=${artistName}&type=artist&limit=3`,
+    url: `https://api.spotify.com/v1/search?q=${encodeURIComponent(artistName)}&type=artist&limit=3`,
     headers
   };
 
@@ -29,8 +29,10 @@ const fetchTopTracks = (body) => {
   let url;
 
   for (let i = 0; i < 2; i++) {
+    const id = data[i].id
     url = `https://api.spotify.com/v1/artists/${data[i].id}/top-tracks?market=ES`;
-    topTracksByArtists.push(request({ url, headers }));
+    let tracks = request({ url, headers });
+    topTracksByArtists.push(tracks);
   }
 
   return Promise.all(topTracksByArtists);
@@ -44,8 +46,8 @@ const recommendedBySpotify = (artistName) => {
       const recommendations = {};
       
       for (const artist of arr) {
-        const data = JSON.parse(artist)
-        const name = data.tracks[0].artists[0].name
+        const data = JSON.parse(artist);
+        const name = data.tracks[0].artists[0].name;
         recommendations[name] = [];
 
         for (const track of data.tracks) {
@@ -53,7 +55,8 @@ const recommendedBySpotify = (artistName) => {
             name: track.name,
             album: track.album.name,
             external_url: track.external_urls.spotify,
-            cover: track.album.images[0].url
+            cover: track.album.images[0].url,
+            header: data.header
           });
         }
       }
