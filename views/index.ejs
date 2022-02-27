@@ -20,11 +20,10 @@
           <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/youtube.png?raw=true" height="225" alt="youtube">
         </div>
       </div>
-      <form method="post" action="/">
+      <form method="post" action="/search_results">
         <row class="form-row align-items-center">
             <div class="col-sm-9 my-1">
-              <label class="sr-only" for="search">Name</label>
-              <input type="text" class="form-control form-control-lg" id="search" style="border-radius: 20px;" placeholder="Enter an artist name">
+              <input type="text" class="form-control form-control-lg" style="border-radius: 20px;" name="search" placeholder="Enter an artist name">
             </div>
             <div class="col-auto my-1">
               <button type="submit" class="btn btn-success btn-lg" style="border-radius: 10px;">Search</button>
