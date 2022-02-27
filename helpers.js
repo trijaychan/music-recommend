@@ -29,7 +29,7 @@ const fetchTopTracks = (body) => {
   let url;
 
   for (let i = 0; i < 2; i++) {
-    const id = data[i].id
+    const id = data[i].id;
     url = `https://api.spotify.com/v1/artists/${data[i].id}/top-tracks?market=ES`;
     let tracks = request({ url, headers });
     topTracksByArtists.push(tracks);
@@ -47,7 +47,7 @@ const recommendedBySpotify = (artistName) => {
       
       for (const artist of arr) {
         const data = JSON.parse(artist);
-        const name = data.tracks[0].artists[0].name;
+        const name = data.tracks[0].album.artists[0].name;
         recommendations[name] = [];
 
         for (const track of data.tracks) {
