@@ -6,30 +6,32 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   </head>
   <body style="background-color: #121212;">
-    <div class="container">
-      <div class="row align-items-center text-center m-5 h1" style="color: #ffffff">
+    <div class="container-fluid">
+      <div class="row justify-content-center">
         <div class="col-auto">
-          <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/spotify.png?raw=true" height="200" alt="spotify">
-        </div>
-        +
-        <div class="col-auto">
-          <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/apple.png?raw=true" class="ml-2 mr-2" height="185" alt="apple">
-        </div>
-        +
-        <div class="col-auto">
-          <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/youtube.png?raw=true" height="225" alt="youtube">
+          <table class="table-responsive-lg table-borderless">
+            <tr>
+              <h1 class="display-2" style="color: #121212"><strong>Recommendify</strong></h1>
+              <h1 class="display-2" style="color: #121212"><strong>Recommendify</strong></h1>
+            </tr>
+            <form method="post" action="/search_results">
+              <tr class="row-6">
+                <td>
+                  <div class="d-flex align-items-center justify-content-center float-left">
+                    <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/spotify.png?raw=true" height="300" alt="spotify">
+                    <h1 class="display-1" style="color: #1ed760"><strong>Recommendify</strong></h1>
+                  </div>
+                </td>
+              </tr>
+              <tr class="row-6">
+                <td>
+                  <input type="text" class="form-control form-control-lg mt-4" style="border-radius: 20px;" name="search" placeholder="Enter an artist name.">
+                </td>
+              </tr>
+            </form>
+          </table>
         </div>
       </div>
-      <form method="post" action="/search_results">
-        <row class="form-row align-items-center">
-            <div class="col-sm-9 my-1">
-              <input type="text" class="form-control form-control-lg" style="border-radius: 20px;" name="search" placeholder="Enter an artist name">
-            </div>
-            <div class="col-auto my-1">
-              <button type="submit" class="btn btn-success btn-lg" style="border-radius: 10px;">Search</button>
-            </div>
-        </row>
-      </form>
     </div>
   </body>
 
