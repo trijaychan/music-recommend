@@ -5,8 +5,65 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   </head>
-  <body>
-
+  <body style="background-color: #121212;">
+    <% const recs = await recommendedBySpotify(artistName)%>
+    <div class="container-fluid">
+      <div class="table-responsive-lg table-borderless">
+        <table class="table">
+          <thead>
+            <tr>
+              <% for (const rec in recs) { %>
+                <td class="text-center col-3" scope="col">
+                  <h1 class="display-2 float-left mx-2" style="color: #ffffff;"><strong><%= rec %></strong></h1>
+                </td>
+              <% } %>
+            </tr>
+          </thead>
+          <tbody>
+            <% const keys = Object.keys(recs) %>
+            <tr>
+              <table class="table-responsive-lg">
+                <% for (let i = -1; i < recs[keys[1]].length; i++) { %>
+                  <tr>
+                    <% for (const key of keys) { %>
+                      <% if (i === -1) { %>
+                        <td class="col-auto text-center">
+                          <h5 style="color: #A1A1A1"><strong>#</strong></h6>
+                        </td>
+                        <td class="col-md-3">
+                          <h6 class="float-left" style="color: #A1A1A1"><strong>Title</strong></h5>
+                        </td>
+                        <td  class="col-md-3 text-center">
+                          <h6 class="float-left" style="color: #A1A1A1"><strong>Album</strong></h5>
+                        </td>
+                      <% } else { %>
+                        <% if (recs[key][i]) { %>
+                          <td class="col-auto text-center align-middle">
+                            <h6 style="color: #A1A1A1"><strong><%= i + 1 %></strong></h5>
+                          </td>
+                          <td class="col-md-3">
+                            <div class="d-flex align-items-center justify-content-center float-left">
+                              <img src=<%= recs[key][i].cover %>  height="75">
+                              <h6 class="float-left ml-4" style="color: #ffffff;"><strong><%= recs[key][i].name %></strong></h6>
+                            </div>
+                          </td>
+                          <td class="col-md-3 text-center align-middle">
+                            <h6 class="float-left" style="color: #A1A1A1"><strong>Album Name</strong></h6></td>
+                        <% } else { %>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                        <% } %>
+                      <% } %>
+                    <% } %>
+                  </tr>
+                <% } %>
+              </table>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </body>
 
   <!-- Bootstrap JS -->
