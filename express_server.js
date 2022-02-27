@@ -2,24 +2,29 @@
 
 const bodyParser = require("body-parser");
 const express = require("express");
+const ejs = require("ejs");
+const { recommendedBySpotify } = require("./helpers");
 
 const PORT = 8080;
 const app = express();
 
-app.set("view engine", "ejs");
+app.engine ('.html', ejs.renderFile);
+app.set ('view engine', 'html');
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.get("/", (req, res) => {
-  res.render("index");
+  res.render("index.ejs");
 });
 
-app.post("/", (req, res) => {
-  res.redirect("/search_results");
+app.get("/json", async (req, res) => {
+  const a = await recommendedBySpotify("spoder");
+  res.send(a);
 });
 
-app.get("/search_results", (req, res) => {
-  const artistName = req.params.search;
-  res.render("search_results", {artistName});
+app.post("/search_results", async (req, res) => {
+  const artistName = req.body.search;
+  const html = await ejs.renderFile("./views/search_results.ejs", { recommendedBySpotify, artistName }, { async: true });
+  res.send(html);
 });
 
 app.listen(PORT, () => {
