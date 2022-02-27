@@ -1,7 +1,7 @@
 // helper.js
 
 const request = require("request-promise");
-const spotifyAccessToken = "BQDqwQEJIcmjb_o3YZ4qBXTDq6pjC_a8bjY7Kw_N84i7saDvY6XOdlKx9hTHkXKtnImCFSdE_032z9X1s_1gCjmO28iE-GGqvtehd21f15jh0F7pyt7y9qkjJzb2iU59FGLdCkTVeCtM_xUIaEi5gaHRKCjRXuEeths";
+const spotifyAccessToken = "BQCbtKM52GoC8L79qCf7rnSfyuIEEL_Jr9uxLZyvt999uuWGgHclv9FJW6CPHJ43BM-3RVJ8NF-TXfO7id3wzZb1HlfIfC0g_l_EEwfXIwkNsbkWFEiMLYTB-e4guBQKCQBV9_IpixOJs1Buq6KIvwBcEYQMW2x_rAM";
 const headers = { Authorization: `Bearer ${spotifyAccessToken}` };
 
 const fetchArtistSpotify = (artistName) => {
@@ -51,6 +51,7 @@ const recommendedBySpotify = (artistName) => {
         for (const track of data.tracks) {
           recommendations[name].push({
             name: track.name,
+            album: track.album.name,
             external_url: track.external_urls.spotify,
             cover: track.album.images[0].url
           });
