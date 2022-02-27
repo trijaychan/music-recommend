@@ -7,14 +7,27 @@
   </head>
   <body style="background-color: #191414;">
     <div class="container">
+      <div class="row align-items-center text-center m-5 h1" style="color: #ffffff">
+        <div class="col-auto">
+          <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/spotify.png?raw=true" height="200" alt="spotify">
+        </div>
+        +
+        <div class="col-auto">
+          <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/apple.png?raw=true" class="ml-2 mr-2" height="185" alt="apple">
+        </div>
+        +
+        <div class="col-auto">
+          <img src="https://github.com/trijaychan/music-recommend/blob/master/docs/logos/youtube.png?raw=true" height="225" alt="youtube">
+        </div>
+      </div>
       <form method="post" action="/">
         <row class="form-row align-items-center">
             <div class="col-sm-9 my-1">
               <label class="sr-only" for="search">Name</label>
-              <input type="text" class="form-control" id="search" placeholder="Enter an artist name">
+              <input type="text" class="form-control form-control-lg" id="search" style="border-radius: 20px;" placeholder="Enter an artist name">
             </div>
             <div class="col-auto my-1">
-              <button type="submit" class="btn btn-success">Search</button>
+              <button type="submit" class="btn btn-success btn-lg" style="border-radius: 10px;">Search</button>
             </div>
         </row>
       </form>
