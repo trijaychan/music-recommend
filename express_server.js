@@ -23,8 +23,13 @@ app.get("/json", async (req, res) => {
 
 app.post("/search_results", async (req, res) => {
   const artistName = req.body.search;
-  const html = await ejs.renderFile("./views/search_results.ejs", { recommendedBySpotify, artistName }, { async: true });
-  res.send(html);
+
+  if (artistName) {
+    const html = await ejs.renderFile("./views/search_results.ejs", { recommendedBySpotify, artistName }, { async: true });
+    res.send(html);
+  } else {
+    res.redirect("/")
+  }
 });
 
 app.listen(PORT, () => {
