@@ -5,16 +5,25 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
   </head>
-  <body style="background-color: #121212;">
+  <body style="background-image: linear-gradient(0deg, #121212, #2C2C2C); background-attachment: fixed;">
     <% const recs = await recommendedBySpotify(artistName)%>
     <div class="container-fluid">
       <div class="table-responsive-lg table-borderless">
         <table class="table">
           <thead>
             <tr>
+              <div class="d-flex align-items-center justify-content-center">
+                <img src=<%= await fetchArtistImage(artistName) %> class="mt-5 mb-4" height="640" width="640">
+                <h1 class="float-left ml-5" style="color: #ffffff; font-size: 550%;"><strong>Artists similar to<br><%= artistName %></strong></h1>
+              </div>
+            </tr>
+            <tr>
               <% for (const rec in recs) { %>
                 <td class="text-center col-3" scope="col">
-                  <h1 class="display-2 float-left mx-2" style="color: #ffffff;"><strong><%= rec %></strong></h1>
+                  <div class="d-flex align-items-center justify-content-center float-left">
+                    <img src=<%= await fetchArtistImage(rec) %> class="rounded-circle mt-2 mb-2" height="210" width="210">
+                    <h1 class="float-left ml-4 mx-2" style="color: #ffffff; font-size: 500%;"><strong><%= rec %></strong></h1>
+                  </div>
                 </td>
               <% } %>
             </tr>
@@ -23,10 +32,10 @@
             <% const keys = Object.keys(recs) %>
             <tr>
               <table class="table-responsive-lg">
-                <% for (let i = -1; i < 10; i++) { %>
+                <% for (let i = -2; i < 10; i++) { %>
                   <tr>
                     <% for (const key of keys) { %>
-                      <% if (i === -1) { %>
+                      <% if (i === -2) { %>
                         <td class="col-auto text-center">
                           <h5 style="color: #A1A1A1"><strong>#</strong></h6>
                         </td>
@@ -36,15 +45,21 @@
                         <td  class="col-md-3 text-center">
                           <h6 class="float-left" style="color: #A1A1A1"><strong>Album</strong></h5>
                         </td>
-                      <% } else { %>
+                      <% } else if (i === -1) { %>
+                        <td colspan="6">
+                          <hr class="m-0" style="border-color: #A1A1A1" />
+                        </td>
+                      <% } else { %> 
                         <% if (recs[key][i]) { %>
                           <td class="col-auto text-center align-middle">
                             <h6 style="color: #A1A1A1"><strong><%= i + 1 %></strong></h5>
                           </td>
                           <td class="col-md-3">
                             <div class="d-flex align-items-center justify-content-center float-left">
-                              <img src=<%= recs[key][i].cover %> class="mt-2 mb-2" height="60" width="60">
-                              <h6 class="float-left ml-4" style="color: #ffffff;"><strong><%= recs[key][i].name %></strong></h6>
+                              <img src=<%= recs[key][i].cover %> class="mt-2 mb-2" height="50" width="50">
+                              <a href=<%= recs[key][i].external_url %> target="_blank">
+                                <h6 class="float-left ml-4" style="color: #ffffff;"</h6><strong><%= recs[key][i].name %></strong></h6>
+                              </a>
                             </div>
                           </td>
                           <td class="col-md-3 text-center align-middle">
