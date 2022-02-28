@@ -19,7 +19,7 @@ Recommendify is a full stack web application built with Node and Express that re
 - EJS
 - body-parser
 - request
-- requestpromise
+- request-promise
 
 ## Getting Started
 
