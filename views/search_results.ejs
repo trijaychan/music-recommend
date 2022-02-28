@@ -13,8 +13,9 @@
           <thead>
             <tr>
               <div class="d-flex align-items-center justify-content-center">
+                <% const artist = await fetchArtistSpotify(artistName) %>
                 <img src=<%= await fetchArtistImage(artistName) %> class="mt-5 mb-4" height="640" width="640">
-                <h1 class="float-left ml-5" style="color: #ffffff; font-size: 550%;"><strong>Artists similar to<br><%= artistName %></strong></h1>
+                <h1 class="float-left ml-5" style="color: #ffffff; font-size: 550%;"><strong>Artists similar to<br><%= JSON.parse(artist).artists.items[0].name %></strong></h1>
               </div>
             </tr>
             <tr>
