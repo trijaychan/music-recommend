@@ -79,6 +79,7 @@ const fetchArtistImage = (artistName) => {
 };
 
 module.exports = {
+  fetchArtistSpotify,
   recommendedBySpotify,
   fetchArtistImage
 };
